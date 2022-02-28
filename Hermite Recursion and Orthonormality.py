@@ -10,11 +10,11 @@ import numpy as np
 import math
 from scipy.special import hermite
 from scipy.misc import derivative
-import scipy.integrate as sci
+from scipy.integrate import quad
 
 # Providing the value of m, start, stop, Np 
 n = 4
-m = 3
+m = 5
 start = -0.5
 stop = 0.5
 Np = 1000
@@ -57,7 +57,45 @@ if(rech5): # H(n)'(x)=2*x*H(n)(x)-H(n+1)(x)
     rhs = 2*x*hn(x)-hnq(x)
     print('Maximum of dH(n)(x)/dx -2*x*H(n)(x)+H(n+1)(x) = ', abs(max(lhs-rhs)))
 
-if(rech6): # \int e^(-x^2)*H(n)(x)*H(m)(x) = (2^n)*(n!)*sqrt(pi)*delta(nm)
-    I = sci.simps(np.exp(-x**2)*hn(x)*hm(x),x)*np.divide(1,pow(2,n)*math.factorial(n)*np.sqrt(np.pi))
-    print ('Orthonormality : = ', I)
-  
+#Checking Orthonormality:  # \int e^(-x^2)*H(n)(x)*H(m)(x) = (2^n)*(n!)*sqrt(pi)*delta(nm)
+
+from scipy.special import hermite as h    
+N=int(input("Enter degree of hermite polynomial for checking orthonormality :"))
+
+if(rech6):
+    print ("Orthonormality: ")
+    print ('m\t n\t value\t\t error\t ')
+    print ('----------------------------------------------------------------------------')
+
+    def f(x,M,N):
+        return np.exp(-x**2)*h(N)(x)*h(M)(x)
+    
+    for M in range(0,N+1):
+        I,err = quad(f,-np.inf,np.inf,args=(M,N))
+        print ('%d\t%d\t%f\t\t%f '%(M,N,I,err))
+
+        
+        
+        
+------------------------------------------------------------
+OUTPUT:        
+------------------------------------------------------------
+
+
+        
+Compare maximum of |lhs-rhs| (L1 norm) to zero for n =  4
+Maximum of dH(n)(x)/dx - 2*n*H(n-1)(x)=  2.547281496845244e-09
+Maximum of H(n)(-x)-(-1)^n*H(n)(x)=  0.0
+Maximum of d^2H(n)(x)/dx^2 - 2*x*dH(n)(x)/dx - 2*n*H(n)(x)=  0.006259404165589899
+Maximum of H(n+1)(x)=2*x*H(n)(x)-2*n*H(n-1)(x)=  1.4210854715202004e-14
+Maximum of dH(n)(x)/dx -2*x*H(n)(x)+H(n+1)(x) =  2.547281496845244e-09
+Enter degree of hermite polynomial for checking orthonormality :5
+Orthonormality: 
+m	 n	 value		 error	 
+----------------------------------------------------------------------------
+0	5	0.000000		0.000000 
+1	5	0.000000		0.000000 
+2	5	0.000000		0.000000 
+3	5	0.000000		0.000000 
+4	5	0.000000		0.000000 
+5	5	6806.222787		0.000020 
