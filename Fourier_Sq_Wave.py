@@ -51,7 +51,7 @@ plt.show()
 # Fourier series analysis for a sqaure wave function
 #Using User defined Function
 
-A         = 4   # amplitude 
+A         = 5   # amplitude 
 period    = 30  # periodicity
 harmonics = 5   # Number of Harmonics
 t = np.linspace(0,4*period,1000) # x-grid
