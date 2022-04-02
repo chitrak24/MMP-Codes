@@ -1,3 +1,10 @@
+"""
+Registration: 012-1111-0461-20;
+Roll: 203012-21-0008
+Description: Square Wave
+Author: Chitrak Roychowdhury
+"""
+
 # Fourier series analysis for a sqaure wave function
 # Using scipy.signal
 
