@@ -14,11 +14,11 @@ import matplotlib.pyplot as plt
 from scipy.integrate import simps
 
 period = 10 # Periodicity of the periodic function f(x)
-freq = 5   # No of waves in time period L
+freq = 5   # No of waves in time period 
 Np = 100000
 terms=100
 
-# Generation of square wave
+# Generation of Triangular wave
 x=np.linspace(0,period,Np)
 y=triang(Np)
 
@@ -48,7 +48,7 @@ plt.savefig("fs_triangular.pdf")
 plt.show()
 
 
-# Fourier series analysis for a Sawtooth wave function
+# Fourier series analysis for a Triangular wave function
 #Using User defined Function
 
 A         = 4   # amplitude 
@@ -56,7 +56,7 @@ period    = np.pi  # periodicity
 harmonics = 3   # Number of Harmonics
 x = np.linspace(-3*period,3*period,250) # x-grid
 
-# generate square waveform
+# generate Triangular waveform
 def trwave(x, period):
     return A*2*np.arcsin(np.sin(np.pi*x/period))/np.pi
     
