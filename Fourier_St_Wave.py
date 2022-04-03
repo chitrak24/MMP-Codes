@@ -18,7 +18,7 @@ freq = 5   # No of waves in time period L
 Np = 100000
 terms=100
 
-# Generation of square wave
+# Generation of sawtooth wave
 x=np.linspace(0,period,Np)
 y=sawtooth(2.0*np.pi*x*freq/period)
 
@@ -56,11 +56,11 @@ period    = np.pi  # periodicity
 harmonics = 3   # Number of Harmonics
 t = np.linspace(-3*period,3*period,250) # x-grid
 
-# generate square waveform
+# generate sawtooth waveform
 def stwave(t, period):
     return A*2*(t/period - np.floor(.5+t/period))
     
-# fourier coefficients; an=0; bn=4/n*pi for odd-n.
+# fourier coefficients; an=0,bn=pow(-1,n+1)*2/(np.pi*n)
 def bn(n):                       
     return pow(-1,n+1)*2/(np.pi*n)
     
